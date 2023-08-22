@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Vanilla Sample</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/vosk-browser@0.0.5/dist/vosk.js"></script>
+  <script type="application/javascript" src="modern-vanilla-sample.js"></script>
+</head>
+<body>
+  <div class="flex flex-col justify-center items-center space-y-8 h-screen">
+    <div class="flex flex-col justify-center items-center space-y-4">
+      <button type="button" id="trigger" class="border-2 border-black hover:border-neutral-500 p-2 rounded-lg font-bold hover:text-neutral-500">Start recognition</button>
+      <div id="recognition-result" class="border-2 border-black p-2 rounded-lg min-w-[576px] min-h-[48px] text-center"><span id="partial"></span></div>
+    </div>    
+    <a href="index.html" class="border-2 border-black hover:border-neutral-500 p-2 rounded-lg font-bold hover:text-neutral-500">Home</a>
+  </div>
+</body>
+</html>
