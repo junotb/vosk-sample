@@ -1,6 +1,6 @@
 # Vosk-Sample
 
-Basic example & Modern-vanilla example from [ccoreilly](https://github.com/ccoreilly/vosk-browser)
+Modern-vanilla example from [ccoreilly](https://github.com/ccoreilly/vosk-browser)
 
 Model from [alphacep](https://alphacephei.com/en/) - vosk-model-small-en-us-0.15
 

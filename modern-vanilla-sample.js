@@ -11,32 +11,41 @@ async function init() {
   const sampleRate = 48000;
   
   const recognizer = new model.KaldiRecognizer(sampleRate);
+  console.log(recognizer);
   recognizer.setWords(true);
 
   recognizer.on("result", (message) => {
-      const result = message.result;
-      // console.log(JSON.stringify(result, null, 2));
-      
-      const newSpan = document.createElement('span');
-      newSpan.textContent = `${result.text} `;
-      resultsContainer.insertBefore(newSpan, partialContainer);
+    const result = message.result;
+    // console.log(JSON.stringify(result, null, 2));
+    
+    const newSpan = document.createElement('span');
+    newSpan.textContent = `${result.text} `;
+    resultsContainer.insertBefore(newSpan, partialContainer);
   });
   recognizer.on("partialresult", (message) => {
-      const partial = message.result.partial;
+    const partial = message.result.partial;
 
-      partialContainer.textContent = partial;
+    partialContainer.textContent = partial;
+  });
+  recognizer.on("data", (message) => {
+    if (recognizer.acceptWaveform(message)) {
+      console.log('result:' + recognizer.result());
+    } else {
+      console.log('partialResult:' + recognizer.partialResult());
+    }
+    console.log('finalResult:' + recognizer.finalResult());
   });
   
   partialContainer.textContent = "Ready";
   
   const mediaStream = await navigator.mediaDevices.getUserMedia({
-      video: false,
-      audio: {
-          echoCancellation: true,
-          noiseSuppression: true,
-          channelCount: 1,
-          sampleRate
-      },
+    video: false,
+    audio: {
+      echoCancellation: true,
+      noiseSuppression: true,
+      channelCount: 1,
+      sampleRate
+    },
   });
   
   const audioContext = new AudioContext();
@@ -52,7 +61,7 @@ async function init() {
 window.onload = () => {
   const trigger = document.getElementById('trigger');
   trigger.onmouseup = () => {
-      trigger.disabled = true;
-      init();
+    trigger.disabled = true;
+    init();
   };
 }
