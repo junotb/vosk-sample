@@ -11,7 +11,6 @@ async function init() {
   const sampleRate = 48000;
   
   const recognizer = new model.KaldiRecognizer(sampleRate);
-  console.log(recognizer);
   recognizer.setWords(true);
 
   recognizer.on("result", (message) => {
@@ -26,14 +25,6 @@ async function init() {
     const partial = message.result.partial;
 
     partialContainer.textContent = partial;
-  });
-  recognizer.on("data", (message) => {
-    if (recognizer.acceptWaveform(message)) {
-      console.log('result:' + recognizer.result());
-    } else {
-      console.log('partialResult:' + recognizer.partialResult());
-    }
-    console.log('finalResult:' + recognizer.finalResult());
   });
   
   partialContainer.textContent = "Ready";
